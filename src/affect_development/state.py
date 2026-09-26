@@ -25,6 +25,17 @@ class MemoryRecord:
     appraisal_reason: str
 
 
+def remember(history: tuple[MemoryRecord, ...], record: MemoryRecord, capacity: int = 8) -> tuple[MemoryRecord, ...]:
+    """Append one synthetic feedback record without storing person data."""
+    if (not isinstance(history, tuple) or not all(isinstance(item, MemoryRecord) for item in history)
+            or not isinstance(record, MemoryRecord) or type(capacity) is not int or not 1 <= capacity <= 32
+            or not isinstance(record.event_id, str) or not record.event_id.strip()
+            or type(record.action) is not Action or type(record.outcome) is not int or record.outcome not in (0, 1)
+            or not isinstance(record.appraisal_reason, str) or not record.appraisal_reason):
+        raise ValueError("invalid synthetic memory record")
+    return (*history, record)[-capacity:]
+
+
 def _bounded(value: float) -> float:
     return min(1.0, max(0.0, value))
 
@@ -46,6 +57,23 @@ def transition(previous: FunctionalState, appraisal: Appraisal, decay: float = 0
         _bounded(previous.uncertainty * decay + appraisal.uncertainty * (1 - decay)),
         _bounded(previous.support_seeking * decay + support_signal * (1 - decay)),
     )
+
+
+def transition_with_memory(previous: FunctionalState, appraisal: Appraisal,
+                           history: tuple[MemoryRecord, ...], decay: float = 0.70) -> FunctionalState:
+    """Use only matching synthetic outcome records after all safety checks."""
+    base = transition(previous, appraisal, decay)
+    if appraisal.safety_risk or not appraisal.valid:
+        return base
+    if not isinstance(history, tuple) or not all(isinstance(item, MemoryRecord) for item in history):
+        raise ValueError("invalid synthetic memory history")
+    matching = [item.outcome for item in history if item.event_id == appraisal.event_id]
+    if not matching:
+        return base
+    outcome_bias = sum(matching) / len(matching) - 0.5
+    return FunctionalState(_bounded(base.approach + 0.2 * outcome_bias),
+                           _bounded(base.avoidance - 0.2 * outcome_bias),
+                           base.uncertainty, base.support_seeking)
 
 
 def regulate(appraisal: Appraisal, state: FunctionalState) -> Action:

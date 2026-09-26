@@ -2,7 +2,8 @@ import unittest
 
 from functional_affect.models import Action
 
-from affect_development import AppraisalInput, FunctionalState, appraise, development_curriculum, regulate, transition
+from affect_development import (AppraisalInput, FunctionalState, MemoryRecord, appraise,
+                                development_curriculum, regulate, remember, transition, transition_with_memory)
 
 
 class AffectDevelopmentTests(unittest.TestCase):
@@ -42,6 +43,17 @@ class AffectDevelopmentTests(unittest.TestCase):
             # carry-over is tested by the reappraisal test above.
             state = transition(FunctionalState(), appraisal)
             self.assertEqual(regulate(appraisal, state), case.expected_action, case.description)
+
+    def test_memory_is_bounded_synthetic_and_removable(self):
+        history = remember((), MemoryRecord("e1", Action.DECOMPOSE, 0, "P.appraisal"))
+        appraisal = appraise(self.event(goal_relevance=3, goal_conduciveness=3, certainty=3))
+        without_memory = transition(FunctionalState(), appraisal)
+        with_memory = transition_with_memory(FunctionalState(), appraisal, history)
+        self.assertLess(with_memory.approach, without_memory.approach)
+        self.assertGreater(with_memory.avoidance, without_memory.avoidance)
+        self.assertEqual(transition_with_memory(FunctionalState(), appraisal, ()), without_memory)
+        with self.assertRaises(ValueError):
+            remember((), MemoryRecord("x", Action.CONTINUE, 2, "P.appraisal"))
 
 
 if __name__ == "__main__":

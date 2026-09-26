@@ -26,6 +26,7 @@ class AppraisalInput:
 class Appraisal:
     """Normalized values and an explicit fail-closed reason, if applicable."""
 
+    event_id: str
     novelty: float
     goal_relevance: float
     goal_conduciveness: float
@@ -61,10 +62,11 @@ def _valid(event: AppraisalInput) -> bool:
 def appraise(event: AppraisalInput) -> Appraisal:
     """Convert a checked synthetic event to a deterministic functional profile."""
     if not isinstance(event, AppraisalInput) or not _valid(event) or not event.parser_valid:
-        return Appraisal(0.0, 0.0, 0.0, 0.0, 1.0, 0.0, True, False, False, "G0.invalid_or_missing_evidence")
+        return Appraisal("invalid", 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, True, False, False, "G0.invalid_or_missing_evidence")
     if event.safety_risk:
-        return Appraisal(0.0, 0.0, 0.0, 0.0, 1.0, 0.0, True, event.boundary_risk, True, "G0.safety_risk")
+        return Appraisal(event.event_id, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, True, event.boundary_risk, True, "G0.safety_risk")
     return Appraisal(
+        event_id=event.event_id,
         novelty=event.novelty / 3,
         goal_relevance=event.goal_relevance / 3,
         goal_conduciveness=event.goal_conduciveness / 3,

@@ -7,7 +7,7 @@ emotion, consciousness, or human development.
 
 from .appraisal import Appraisal, AppraisalInput, appraise
 from .curriculum import CurriculumCase, development_curriculum
-from .state import FunctionalState, MemoryRecord, regulate, transition
+from .state import FunctionalState, MemoryRecord, regulate, remember, transition, transition_with_memory
 
 __all__ = [
     "Appraisal",
@@ -18,5 +18,7 @@ __all__ = [
     "appraise",
     "development_curriculum",
     "regulate",
+    "remember",
     "transition",
+    "transition_with_memory",
 ]
