@@ -1,0 +1,12 @@
+{
+  "schema": "controllability-public-card-source-review-1",
+  "status": "rejected_due_source_terms",
+  "source_url": "https://openstax.org/books/psychology-2e/pages/10-introduction",
+  "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+  "creator_or_rightsholder": "OpenStax / Rice University",
+  "attribution_text": "OpenStax, Psychology 2e, chapter 10 introduction; consulted only as a rejected conceptual candidate; no source text, image, activity, assessment, or dataset copied.",
+  "change_notice": "source_reference_only_no_text_copied",
+  "personal_data_assessment": "not_assessed_not_used",
+  "card_text_included": false,
+  "rejection_reason": "source_terms_prohibit_llm_ingestion_without_prior_permission"
+}

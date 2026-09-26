@@ -1,0 +1,11 @@
+{
+  "schema": "controllability-external-reproduction-bundle-2",
+  "scope": "behavioral_conformance_only_no_card_corpus",
+  "external_distribution": "approved_behavior_fixture_only",
+  "files": [
+    {"path": "experiments/controllability_reproduction_contract_v1.json", "sha256": "8b9a6996937a476e3375ee62f106c4e5f38142c493b7118179069ad8e9380630"},
+    {"path": "experiments/external_conformance_submission_template_v1.json", "sha256": "2632cc40e26e0fe38d6878924aab5141056bca9827e8e6e6b1c524fb9f1f37ee"},
+    {"path": "experiments/project_card_license_decision_v1.json", "sha256": "ba11c0b4b57edb8a9d17f0f66688b3c6075974022583e483219b7e1b550354ed"},
+    {"path": "docs/카드_CC_BY_4_0_라이선스.md", "sha256": "444e93742452f4e0eae52f994b98b8a0e0a4289d30a7e5b520c799b825792b73"}
+  ]
+}

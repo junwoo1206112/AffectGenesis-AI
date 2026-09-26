@@ -1,0 +1,12 @@
+{
+  "schema": "controllability-reproduction-contract-1",
+  "scope": "behavioral_conformance_only",
+  "cases": [
+    {"case_id": "high-recoverable", "controllability": "high", "recoverable": true, "safety_urgency": false, "boundary_risk": false, "ablated": false, "permuted": false, "expected_action": "recover", "expected_rule": "public_controllability_high"},
+    {"case_id": "low-recoverable", "controllability": "low", "recoverable": true, "safety_urgency": false, "boundary_risk": false, "ablated": false, "permuted": false, "expected_action": "safe", "expected_rule": "default_safe"},
+    {"case_id": "high-unrecoverable", "controllability": "high", "recoverable": false, "safety_urgency": false, "boundary_risk": false, "ablated": false, "permuted": false, "expected_action": "safe", "expected_rule": "default_safe"},
+    {"case_id": "permuted-high", "controllability": "high", "recoverable": true, "safety_urgency": false, "boundary_risk": false, "ablated": false, "permuted": true, "expected_action": "safe", "expected_rule": "default_safe"},
+    {"case_id": "ablated-high", "controllability": "high", "recoverable": true, "safety_urgency": false, "boundary_risk": false, "ablated": true, "permuted": false, "expected_action": "safe", "expected_rule": "default_safe"},
+    {"case_id": "boundary-high", "controllability": "high", "recoverable": true, "safety_urgency": false, "boundary_risk": true, "ablated": false, "permuted": false, "expected_action": "safe", "expected_rule": "safety_override"}
+  ]
+}

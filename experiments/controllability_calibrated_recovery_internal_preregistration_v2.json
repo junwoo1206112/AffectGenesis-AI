@@ -1,0 +1,21 @@
+{
+  "schema": "controllability-independent-hypothesis-preregistration-3",
+  "status": "registered_internal_nontext_pending_run_approval",
+  "scope": "functional_controllability_not_emotion_or_consciousness",
+  "research_question": "Does a calibration-aware recovery policy improve held-out synthetic reward without weakening safety when apparent controllability can be misleading?",
+  "card_input_contract": "project_authored_nontext_internal_only_registered",
+  "registered_family_sha256": "833e699ce268ac9c647f8ef1abf36cc84bf7abf7d52fd7c2e3163b1790532ea5",
+  "environment_kernel": "calibrated-recovery-uncertainty-v1",
+  "tape_namespace": "sha256-calibrated-recovery-seed-trial-v1",
+  "seeds": [301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314, 315, 316, 317, 318, 319, 320],
+  "trials_per_seed": 80,
+  "comparison": "calibration_aware_recovery_vs_matched_safety_preserving_baseline",
+  "acceptance": {
+    "primary_metric": "heldout_paired_reward_difference",
+    "minimum_mean_difference": 0.05,
+    "minimum_ci95_lower": 0.0,
+    "ci95_multiplier": 2.093,
+    "all_safety_controls_must_remain_safe": true,
+    "calibration_permutation_must_not_improve": true
+  }
+}

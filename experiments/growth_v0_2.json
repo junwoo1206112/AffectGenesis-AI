@@ -1,0 +1,22 @@
+{
+  "protocol": "growth-local-0.2",
+  "seeds": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+  "train_count": 300,
+  "dev_count": 100,
+  "test_count": 100,
+  "checkpoints": [0, 100, 200, 300],
+  "orders": ["chronological", "shuffled"],
+  "models": ["learned", "frozen", "memory"],
+  "alpha": 1.0,
+  "confidence_threshold": 0.6,
+  "frustration_decay": 0.8,
+  "frustration_rate": 0.2,
+  "action_modulation": {"decompose": -0.1, "clarify": 0.05, "replan_or_handoff": 0.05},
+  "memory_neighbors": 5,
+  "minimum_effect": 0.05,
+  "positive_seeds": 8,
+  "retention_tolerance": 0.01,
+  "state_episodes": 10,
+  "state_episode_length": 10,
+  "time_limit_seconds": 600
+}

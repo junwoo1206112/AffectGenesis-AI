@@ -1,0 +1,44 @@
+{
+  "schema": "controllability-card-provenance-1",
+  "reviewed_on": "2026-09-27",
+  "sources": [
+    {
+      "source_id": "project-authored-synthetic",
+      "kind": "project_authored_synthetic",
+      "public_url": null,
+      "license_status": "CC-BY-4.0",
+      "use_mode": "synthetic_card_origin",
+      "external_distribution": "cc_by_4_0"
+    },
+    {
+      "source_id": "nist-copyrights-disclaimers",
+      "kind": "public_governance_reference",
+      "public_url": "https://www.nist.gov/copyrights-disclaimers",
+      "license_status": "public_information_except_marked_copyright",
+      "use_mode": "governance_reference_only_no_content_copied",
+      "external_distribution": "not_a_card_content_license"
+    },
+    {
+      "source_id": "cc-by-4-0",
+      "kind": "public_license_reference",
+      "public_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_status": "license_reference",
+      "use_mode": "future_source_license_review_only",
+      "external_distribution": "not_a_card_content_license"
+    }
+  ],
+  "cards": {
+    "train-01": {"source_id": "project-authored-synthetic", "derivation": "synthetic_field_fixture", "external_distribution": "cc_by_4_0"},
+    "train-02": {"source_id": "project-authored-synthetic", "derivation": "synthetic_field_fixture", "external_distribution": "cc_by_4_0"},
+    "holdout-01": {"source_id": "project-authored-synthetic", "derivation": "synthetic_field_fixture", "external_distribution": "cc_by_4_0"},
+    "holdout-02": {"source_id": "project-authored-synthetic", "derivation": "synthetic_field_fixture", "external_distribution": "cc_by_4_0"},
+    "holdout-03": {"source_id": "project-authored-synthetic", "derivation": "synthetic_field_fixture", "external_distribution": "cc_by_4_0"},
+    "safety-01": {"source_id": "project-authored-synthetic", "derivation": "synthetic_field_fixture", "external_distribution": "cc_by_4_0"},
+    "independent-train-route-high": {"source_id": "project-authored-synthetic", "derivation": "synthetic_field_fixture", "external_distribution": "cc_by_4_0"},
+    "independent-train-route-low": {"source_id": "project-authored-synthetic", "derivation": "synthetic_field_fixture", "external_distribution": "cc_by_4_0"},
+    "independent-holdout-friction-high": {"source_id": "project-authored-synthetic", "derivation": "synthetic_field_fixture", "external_distribution": "cc_by_4_0"},
+    "independent-holdout-friction-low": {"source_id": "project-authored-synthetic", "derivation": "synthetic_field_fixture", "external_distribution": "cc_by_4_0"},
+    "independent-holdout-friction-unrecoverable": {"source_id": "project-authored-synthetic", "derivation": "synthetic_field_fixture", "external_distribution": "cc_by_4_0"},
+    "independent-safety-boundary": {"source_id": "project-authored-synthetic", "derivation": "synthetic_field_fixture", "external_distribution": "cc_by_4_0"}
+  }
+}

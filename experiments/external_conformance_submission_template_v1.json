@@ -1,0 +1,14 @@
+{
+  "schema": "controllability-external-conformance-submission-1",
+  "status": "template_not_submission",
+  "implementation_label": null,
+  "language": null,
+  "runtime_version": null,
+  "implementation_fingerprint_sha256": null,
+  "dependency_lock_sha256": null,
+  "fixture_sha256": null,
+  "behavioral_fixture_only": true,
+  "project_card_corpus_received": false,
+  "independence_claim": "self_attested_not_verified",
+  "case_results": []
+}

@@ -1,0 +1,8 @@
+# Python interpreter and test caches are reproducible locally.
+__pycache__/
+*.py[cod]
+
+# Generated research evidence is retained locally. The current corpus is too
+# large for a normal Git baseline; commit source, configs, manifests, and docs.
+artifacts/*
+!artifacts/README.md

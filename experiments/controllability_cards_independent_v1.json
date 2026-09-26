@@ -1,0 +1,8 @@
+[
+  {"card_id":"independent-train-route-high","family":"train","controllability":"high","recoverable":true},
+  {"card_id":"independent-train-route-low","family":"train","controllability":"low","recoverable":true},
+  {"card_id":"independent-holdout-friction-high","family":"holdout","controllability":"high","recoverable":true},
+  {"card_id":"independent-holdout-friction-low","family":"holdout","controllability":"low","recoverable":true},
+  {"card_id":"independent-holdout-friction-unrecoverable","family":"holdout","controllability":"high","recoverable":false},
+  {"card_id":"independent-safety-boundary","family":"safety","controllability":"high","recoverable":true,"boundary_risk":true}
+]

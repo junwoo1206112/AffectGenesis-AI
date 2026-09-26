@@ -1,0 +1,17 @@
+{
+  "schema": "controllability-independent-reproduction-protocol-1",
+  "kernel_id": "recovery-friction-v1",
+  "evaluation_family": "holdout",
+  "seeds": [201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220],
+  "trials_per_seed": 96,
+  "tape_scheme": "sha256-recovery-friction-seed-trial-v1",
+  "outcomes": {
+    "recover_success_probability": 0.6,
+    "safe_success_probability": 0.2
+  },
+  "acceptance": {
+    "minimum_mean_difference": 0.2,
+    "minimum_ci95_low": 0.1,
+    "ci95_multiplier": 2.093
+  }
+}

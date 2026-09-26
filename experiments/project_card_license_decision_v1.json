@@ -1,0 +1,20 @@
+{
+  "schema": "project-card-license-decision-1",
+  "status": "approved",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "distribution_scope": "all_registered_cards",
+  "approved_card_ids": [
+    "holdout-01",
+    "holdout-02",
+    "holdout-03",
+    "independent-holdout-friction-high",
+    "independent-holdout-friction-low",
+    "independent-holdout-friction-unrecoverable",
+    "independent-safety-boundary",
+    "independent-train-route-high",
+    "independent-train-route-low",
+    "safety-01",
+    "train-01",
+    "train-02"
+  ]
+}

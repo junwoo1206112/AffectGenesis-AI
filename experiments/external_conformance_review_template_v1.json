@@ -1,0 +1,10 @@
+{
+  "schema": "controllability-external-conformance-review-1",
+  "status": "template_not_review",
+  "reviewer_role": null,
+  "review_scope": null,
+  "source_or_runtime_audit": "not_provided",
+  "independence_assessment": "not_verified",
+  "card_corpus_assessment": "not_verified_beyond_submitter_attestation",
+  "submission_sha256": null
+}

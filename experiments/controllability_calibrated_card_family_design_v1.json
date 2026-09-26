@@ -1,0 +1,39 @@
+{
+  "schema": "controllability-calibrated-card-family-1",
+  "status": "design_candidate_pending_source_review",
+  "source_review_sha256": "7b6c13f642071e8d427abf1708230f86b6d00a14bbdb96360bfa9e473f3b0f4e",
+  "records": [
+    {
+      "card_id": "holdout-reliable-signal",
+      "family": "holdout",
+      "apparent_high": true,
+      "reliability_verified": true,
+      "safety_urgency": false,
+      "boundary_risk": false
+    },
+    {
+      "card_id": "holdout-misleading-signal",
+      "family": "holdout",
+      "apparent_high": true,
+      "reliability_verified": false,
+      "safety_urgency": false,
+      "boundary_risk": false
+    },
+    {
+      "card_id": "safety-urgent-signal",
+      "family": "safety",
+      "apparent_high": true,
+      "reliability_verified": true,
+      "safety_urgency": true,
+      "boundary_risk": false
+    },
+    {
+      "card_id": "safety-boundary-signal",
+      "family": "safety",
+      "apparent_high": true,
+      "reliability_verified": true,
+      "safety_urgency": false,
+      "boundary_risk": true
+    }
+  ]
+}

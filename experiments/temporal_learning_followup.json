@@ -1,0 +1,20 @@
+{
+  "protocol": "temporal-learning-followup-1",
+  "seeds": [20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39],
+  "train_episodes": 600,
+  "evaluation_episodes": 50,
+  "horizon": 30,
+  "checkpoints": [0, 100, 300, 600],
+  "models": ["counts", "affect", "failure_trace", "affect_neutral"],
+  "context_tokens": 2,
+  "laplace": 1,
+  "scalar_decay": 0.8,
+  "scalar_rate": 0.2,
+  "try_penalty": 0.1,
+  "tie_tolerance": 1e-12,
+  "effect_threshold": 0.02,
+  "positive_seed_minimum": 16,
+  "time_limit_seconds": 600,
+  "training_condition": "train",
+  "held_out_condition": "failure_rich"
+}

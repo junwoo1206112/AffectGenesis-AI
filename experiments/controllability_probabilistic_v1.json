@@ -1,0 +1,16 @@
+{
+  "schema": "controllability-probabilistic-protocol-1",
+  "evaluation_family": "holdout",
+  "seeds": [101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120],
+  "trials_per_seed": 64,
+  "tape_scheme": "sha256-seed-trial-v1",
+  "outcomes": {
+    "recover_success_probability": 0.75,
+    "safe_success_probability": 0.1
+  },
+  "acceptance": {
+    "minimum_mean_difference": 0.25,
+    "minimum_ci95_low": 0.15,
+    "ci95_multiplier": 2.093
+  }
+}

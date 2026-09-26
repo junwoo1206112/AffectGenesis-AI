@@ -1,0 +1,19 @@
+{
+  "schema": "controllability-external-reproduction-bundle-1",
+  "scope": "behavioral_conformance_only_no_card_corpus",
+  "external_distribution": "blocked_pending_owner_license",
+  "files": [
+    {
+      "path": "experiments/controllability_reproduction_contract_v1.json",
+      "sha256": "8b9a6996937a476e3375ee62f106c4e5f38142c493b7118179069ad8e9380630"
+    },
+    {
+      "path": "experiments/external_conformance_submission_template_v1.json",
+      "sha256": "2632cc40e26e0fe38d6878924aab5141056bca9827e8e6e6b1c524fb9f1f37ee"
+    },
+    {
+      "path": "experiments/project_card_license_decision_template_v1.json",
+      "sha256": "a59930bee5dbb2b4774e78022c2056ab6fad4925fd493959a0d29a39bc5132da"
+    }
+  ]
+}

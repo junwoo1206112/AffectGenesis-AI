@@ -1,0 +1,18 @@
+{
+  "protocol": "temporal-learning-v2",
+  "seeds": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
+  "train_episodes": 600,
+  "evaluation_episodes": 50,
+  "horizon": 30,
+  "checkpoints": [0, 100, 300, 600],
+  "models": ["counts", "affect", "failure_trace"],
+  "context_tokens": 2,
+  "laplace": 1,
+  "scalar_decay": 0.8,
+  "scalar_rate": 0.2,
+  "try_penalty": 0.1,
+  "tie_tolerance": 1e-12,
+  "effect_threshold": 0.02,
+  "positive_seed_minimum": 16,
+  "time_limit_seconds": 600
+}

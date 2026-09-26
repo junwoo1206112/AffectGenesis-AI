@@ -1,0 +1,9 @@
+[project]
+name = "functional-affect-scenario-lab"
+version = "0.1.0"
+description = "Deterministic reference engine for functional-affect role-play scenarios."
+requires-python = ">=3.12"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
