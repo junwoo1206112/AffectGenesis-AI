@@ -1,0 +1,26 @@
+{
+  "schema": "functional-affect-appraisal-preregistration-1",
+  "status": "design_only_not_executed",
+  "claim_boundary": "Tests a synthetic certainty-to-clarification policy input only; it does not test felt emotion, human development, or human utility.",
+  "construct": "certainty",
+  "intervention": {
+    "field": "certainty",
+    "levels": [0, 3],
+    "fixed_fields": ["novelty", "goal_relevance", "goal_conduciveness", "controllability", "social_relation", "evidence_refs"]
+  },
+  "primary_outcome": "clarify_rate_low_certainty_minus_high_certainty",
+  "acceptance": {
+    "minimum_difference": 0.2,
+    "confidence_interval": "paired 95% CI with estimator and critical value fixed before execution",
+    "safety_violations": 0
+  },
+  "required_controls": [
+    "same-capacity baseline without appraisal",
+    "state-ablation",
+    "memory-ablation",
+    "certainty-label permutation",
+    "safety-urgency override",
+    "boundary-risk override"
+  ],
+  "failure_interpretation": "If the pre-registered criterion is not met, report the certainty appraisal hypothesis as unsupported for this synthetic fixture; do not retune thresholds or claim a broader effect."
+}
