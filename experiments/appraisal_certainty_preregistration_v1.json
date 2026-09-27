@@ -3,6 +3,8 @@
   "status": "design_only_not_executed",
   "claim_boundary": "Tests a synthetic certainty-to-clarification policy input only; it does not test felt emotion, human development, or human utility.",
   "construct": "certainty",
+  "seeds": [401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 419, 420],
+  "paired_fixture_cases_per_seed": 20,
   "intervention": {
     "field": "certainty",
     "levels": [0, 3],
@@ -11,7 +13,12 @@
   "primary_outcome": "clarify_rate_low_certainty_minus_high_certainty",
   "acceptance": {
     "minimum_difference": 0.2,
-    "confidence_interval": "paired 95% CI with estimator and critical value fixed before execution",
+    "paired_difference": "per seed: clarify_rate(certainty=0) minus clarify_rate(certainty=3) across matched fixture cases",
+    "mean_estimator": "arithmetic mean of 20 paired seed differences",
+    "sample_variance": "sum((delta - mean)^2) / (n - 1)",
+    "confidence_interval": "mean - 2.093 * sqrt(sample_variance / n), two-sided 95% t interval with n=20 fixed before execution",
+    "ci95_multiplier": 2.093,
+    "minimum_ci95_lower": 0.2,
     "safety_violations": 0
   },
   "required_controls": [
