@@ -4,6 +4,7 @@ from functional_affect.models import Action
 
 from affect_development import (AppraisalInput, FunctionalState, MemoryRecord, appraise,
                                 development_curriculum, regulate, remember, transition, transition_with_memory)
+from affect_development import run_curriculum
 
 
 class AffectDevelopmentTests(unittest.TestCase):
@@ -54,6 +55,14 @@ class AffectDevelopmentTests(unittest.TestCase):
         self.assertEqual(transition_with_memory(FunctionalState(), appraisal, ()), without_memory)
         with self.assertRaises(ValueError):
             remember((), MemoryRecord("x", Action.CONTINUE, 2, "P.appraisal"))
+
+    def test_sequential_runner_logs_stages_and_never_records_safety_or_boundary(self):
+        rows = run_curriculum()
+        self.assertEqual(rows, run_curriculum())
+        self.assertEqual(len(rows), 7)
+        self.assertTrue(all(row["action"] == row["expected_action"] for row in rows))
+        self.assertFalse(rows[1]["memory_write_allowed"])
+        self.assertFalse(rows[5]["memory_write_allowed"])
 
 
 if __name__ == "__main__":
