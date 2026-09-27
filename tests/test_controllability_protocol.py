@@ -11,7 +11,7 @@ from controllability_protocol.calibrated_family_artifact import replay as calibr
 from controllability_protocol.evidence import run, verify
 from controllability_protocol.probabilistic import replay, run as probabilistic_run, verify as probabilistic_verify
 from controllability_protocol.provenance import verify_provenance, verify_reproduction_contract
-from controllability_protocol.provenance import verify_calibrated_card_family, verify_calibrated_readiness, verify_distribution_gate, verify_external_intake, verify_external_review, verify_external_submission, verify_next_hypothesis_preregistration, verify_public_card_source_review, verify_reproduction_bundle
+from controllability_protocol.provenance import content_sha256, verify_calibrated_card_family, verify_calibrated_readiness, verify_distribution_gate, verify_external_intake, verify_external_review, verify_external_submission, verify_next_hypothesis_preregistration, verify_public_card_source_review, verify_reproduction_bundle
 from controllability_protocol.__main__ import main
 
 
@@ -122,7 +122,7 @@ class ControllabilityProtocolTests(unittest.TestCase):
                 "schema": "controllability-external-conformance-submission-1", "status": "submitted",
                 "implementation_label": "test-only-separate-label", "language": "example", "runtime_version": "0",
                 "implementation_fingerprint_sha256": "a" * 64, "dependency_lock_sha256": "b" * 64,
-                "fixture_sha256": __import__("hashlib").sha256(contract_path.read_bytes()).hexdigest(),
+                "fixture_sha256": content_sha256(contract_path),
                 "behavioral_fixture_only": True, "project_card_corpus_received": False,
                 "independence_claim": "self_attested_not_verified",
                 "case_results": [{"case_id": case["case_id"], "action": case["expected_action"], "rule": case["expected_rule"]} for case in contract["cases"]],
@@ -398,7 +398,7 @@ class ControllabilityProtocolTests(unittest.TestCase):
                 "schema": "controllability-external-conformance-submission-1", "status": "submitted",
                 "implementation_label": "test-only-separate-label", "language": "example", "runtime_version": "0",
                 "implementation_fingerprint_sha256": "a" * 64, "dependency_lock_sha256": "b" * 64,
-                "fixture_sha256": __import__("hashlib").sha256(contract_path.read_bytes()).hexdigest(),
+                "fixture_sha256": content_sha256(contract_path),
                 "behavioral_fixture_only": True, "project_card_corpus_received": False,
                 "independence_claim": "self_attested_not_verified",
                 "case_results": [{"case_id": case["case_id"], "action": case["expected_action"], "rule": case["expected_rule"]} for case in contract["cases"]],
@@ -409,14 +409,14 @@ class ControllabilityProtocolTests(unittest.TestCase):
                 "reviewer_role": "external_conformance_reviewer", "review_scope": "submitted_behavior_fixture_only",
                 "source_or_runtime_audit": "not_provided", "independence_assessment": "not_verified",
                 "card_corpus_assessment": "not_verified_beyond_submitter_attestation",
-                "submission_sha256": __import__("hashlib").sha256(submission_path.read_bytes()).hexdigest(),
+                "submission_sha256": content_sha256(submission_path),
             }), encoding="utf-8")
             result = verify_external_review(review_path, submission_path, contract_path)
             self.assertEqual(result["review_status"], "scope_limited_self_attested")
             self.assertEqual(result["independence_status"], "not_verified")
             intake = verify_external_intake(submission_path, review_path, contract_path)
             self.assertEqual(intake["intake_status"], "verified_scope_limited")
-            self.assertEqual(intake["review_sha256"], __import__("hashlib").sha256(review_path.read_bytes()).hexdigest())
+            self.assertEqual(intake["review_sha256"], content_sha256(review_path))
             with patch("sys.argv", ["controllability", "review", "--review", str(review_path), "--submission", str(submission_path), "--contract", str(contract_path)]):
                 self.assertEqual(main(), 0)
             with patch("sys.argv", ["controllability", "intake", "--submission", str(submission_path), "--review", str(review_path), "--contract", str(contract_path)]):

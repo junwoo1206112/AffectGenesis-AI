@@ -23,7 +23,7 @@ _APPROVED_REPRODUCTION_HANDOFF_FILES = {
 }
 
 
-def _content_sha256(path: Path) -> str:
+def content_sha256(path: Path) -> str:
     """Hash repository text content independent of Windows checkout line endings."""
     return hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
 
@@ -89,7 +89,7 @@ def verify_calibrated_card_family(path: Path, source_review_path: Path) -> dict[
         return {"isolated_execution_ready": False, "external_distribution_ready": False,
                 "reason": "calibrated_card_family_not_registered"}
     source = verify_public_card_source_review(source_review_path)
-    if family.get("source_review_sha256") != _content_sha256(source_review_path):
+    if family.get("source_review_sha256") != content_sha256(source_review_path):
         raise ValueError("calibrated card family source review mismatch")
     records = family.get("records")
     required = {"card_id", "family", "apparent_high", "reliability_verified", "safety_urgency", "boundary_risk"}
@@ -181,7 +181,7 @@ def verify_calibrated_readiness(preregistration_path: Path, family_path: Path, s
             "controllability-independent-hypothesis-preregistration-2",
             "controllability-independent-hypothesis-preregistration-3",
         }
-        and preregistration_record["registered_family_sha256"] != _content_sha256(family_path)
+        and preregistration_record["registered_family_sha256"] != content_sha256(family_path)
     ):
         raise ValueError("internal preregistration family mismatch")
     if not source["candidate_design_ready"]:
@@ -230,7 +230,7 @@ def verify_reproduction_bundle(manifest_path: Path, root: Path) -> dict[str, obj
     root = root.resolve()
     for relative_path, expected_hash in by_path.items():
         file_path = (root / relative_path).resolve()
-        if root not in file_path.parents or _content_sha256(file_path) != expected_hash:
+        if root not in file_path.parents or content_sha256(file_path) != expected_hash:
             raise ValueError("reproduction bundle hash mismatch")
     verify_reproduction_contract(root / "experiments/controllability_reproduction_contract_v1.json")
     submission_template = json.loads((root / "experiments/external_conformance_submission_template_v1.json").read_text(encoding="utf-8"))
@@ -329,7 +329,7 @@ def verify_external_submission(submission_path: Path, contract_path: Path) -> di
             or submission.get("project_card_corpus_received") is not False
             or any(type(submission.get(field)) is not str or len(submission[field]) != 64 for field in fingerprint_fields)):
         raise ValueError("invalid conformance submission metadata")
-    if submission["fixture_sha256"] != _content_sha256(contract_path):
+    if submission["fixture_sha256"] != content_sha256(contract_path):
         raise ValueError("fixture hash mismatch")
     expected = {case["case_id"]: (case["expected_action"], case["expected_rule"]) for case in contract["cases"]}
     results = submission.get("case_results")
@@ -354,7 +354,7 @@ def verify_external_review(review_path: Path, submission_path: Path, contract_pa
             or review.get("source_or_runtime_audit") != "not_provided"
             or review.get("independence_assessment") != "not_verified"
             or review.get("card_corpus_assessment") != "not_verified_beyond_submitter_attestation"
-            or review.get("submission_sha256") != _content_sha256(submission_path)):
+            or review.get("submission_sha256") != content_sha256(submission_path)):
         raise ValueError("invalid conformance review")
     return {"conforms": submission["conforms"], "review_status": "scope_limited_self_attested",
             "independence_status": "not_verified", "source_or_runtime_audit": "not_provided"}
@@ -364,7 +364,7 @@ def verify_external_intake(submission_path: Path, review_path: Path, contract_pa
     """Read-only combined verification for a received submission and review record."""
     review = verify_external_review(review_path, submission_path, contract_path)
     return {"intake_status": "verified_scope_limited",
-            "submission_sha256": _content_sha256(submission_path),
-            "review_sha256": _content_sha256(review_path),
-            "contract_sha256": _content_sha256(contract_path),
+            "submission_sha256": content_sha256(submission_path),
+            "review_sha256": content_sha256(review_path),
+            "contract_sha256": content_sha256(contract_path),
             **review}
