@@ -1,5 +1,6 @@
 import unittest
 import hashlib
+from io import StringIO
 import json
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -11,7 +12,8 @@ from temporal_learning.config import canonical_json
 
 class TemporalLearningCliTests(unittest.TestCase):
     def test_bad_run_id_is_rejected_before_creation(self):
-        self.assertEqual(main(["run", "--config", "experiments/temporal_learning_v1.json", "--run-id", "CON"]), 2)
+        with patch("sys.stderr", new_callable=StringIO):
+            self.assertEqual(main(["run", "--config", "experiments/temporal_learning_v1.json", "--run-id", "CON"]), 2)
 
     def test_verify_rejects_tampered_evidence(self):
         tiny = {"protocol": "temporal-learning-v1", "seeds": [0], "train_episodes": 1,

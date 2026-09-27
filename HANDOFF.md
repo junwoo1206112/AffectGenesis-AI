@@ -1,9 +1,10 @@
 # 기능적 정서 시나리오 랩 인수인계 기록
 
-최종 갱신: 2026-09-27 08:49 (Asia/Seoul)
+최종 갱신: 2026-09-27 09:35 (Asia/Seoul)
 
 ## 0. 다음 작업자가 먼저 읽을 현재 상태
 
+- P4 개선 완료(09:35 KST): certainty evaluator는 이제 `appraisal_certainty_preregistration_v1.json`의 schema/seed/fixture/개입/CI 계수를 fail-closed로 확인하고, 결과에 preregistration·source SHA-256을 결속한다. local artifact는 canonical JSON completion hash와 replay equality로 검증하며 변조 negative test가 있다. baseline은 정상 사건의 appraisal/state signal을 쓰지 않고, state ablation은 uncertainty 기여를 제거한다. expected invalid-run-id CLI test stderr도 캡처했다. focused 12개와 `git diff --check`는 통과했다. 전체 suite 명령은 이 환경에서 최종 summary/exit 출력이 반환되지 않아 통과로 기록하지 않았으며, 새 GitHub Actions가 `main`/PR에서 전체 unittest를 실행한다. 이는 여전히 내부 합성 정책 적합성만 의미한다.
 - P0 Git 기준선 완료(08:56 KST): `main` root commit `70005d7` (`Initial functional affect research baseline`)을 `https://github.com/junwoo1206112/AffectGenesis-AI.git`에 push했다. 소스·문서·실험 계약 152개 파일을 포함했고, 약 2.74GB 생성 artifact 및 Python cache는 `.gitignore`로 제외·로컬 보존했다. repo-local author는 `junwoo1206112 <junwoo1206112@users.noreply.github.com>`으로만 설정했다. 다음은 certainty 단일 가설의 design-only preregistration 및 구현이다.
 - 기능적 정서 발달 참조 경로 추가(08:49 KST): 사용자 요청의 페이즈별 구현을 local Path B(연구설계·증거/재현성·안전 관점)로 실행해 `src/affect_development/`에 합성 `AppraisalInput → appraise → FunctionalState transition → regulate` 참조 경로와 7개 기능형 커리큘럼을 추가했다. 입력 근거/형식 불량, 안전·경계 위험은 fail-closed하며 사람 데이터·외부 LLM·외부 전송은 쓰지 않는다. focused 새 테스트 4개와 전체 unittest 123개가 통과했고 working/cached `git diff --check`도 통과했다. 기존 `growth-local-0.2`를 새 run-id `artifacts/affect_growth/affect-development-v0-1-20260927-01`로 실행하고 strict report verify를 통과했다(10 seed, 45 safety cases/0 violations). `growth_supported:true`는 기존 설계된 합성 로그의 내부 기준만 의미하며 새 appraisal core·실제 정서·인간 발달의 실증이 아니다. 상세 경계는 `docs/기능적_정서_발달_참조구현_v0_1.md`.
 - 외부 conformance handoff v2 완료: `experiments/external_reproduction_handoff_manifest_v2.json`은 CC BY 카드 권리 결정을 hash-bound로 결속하지만 card corpus는 포함하지 않고 behavior fixture·submission template만 외부 공유 준비 상태로 검증한다. `bundle` 출력은 `approved_behavior_fixture_only`, corpus false다. external implementation/submission/review는 아직 수령하지 않았고, 독립성은 여전히 not verified다. focused 27개와 전체 unittest 119개, diff check가 통과했다.

@@ -1,10 +1,14 @@
+import tempfile
 import unittest
+from pathlib import Path
 
 from functional_affect.models import Action
 
 from affect_development import (AppraisalInput, FunctionalState, MemoryRecord, appraise,
                                 development_curriculum, regulate, remember, transition, transition_with_memory)
 from affect_development import run_curriculum
+from affect_development import (evaluate_certainty_preregistration, verify_certainty_artifact,
+                                write_certainty_artifact)
 
 
 class AffectDevelopmentTests(unittest.TestCase):
@@ -63,6 +67,24 @@ class AffectDevelopmentTests(unittest.TestCase):
         self.assertTrue(all(row["action"] == row["expected_action"] for row in rows))
         self.assertFalse(rows[1]["memory_write_allowed"])
         self.assertFalse(rows[5]["memory_write_allowed"])
+
+    def test_certainty_preregistration_is_deterministic_and_keeps_controls_safe(self):
+        result = evaluate_certainty_preregistration()
+        self.assertEqual(result, evaluate_certainty_preregistration())
+        self.assertEqual(len(result["primary_differences"]), 20)
+        self.assertGreaterEqual(result["mean_difference"], 0.2)
+        self.assertGreaterEqual(result["ci95_lower"], 0.2)
+        self.assertEqual(result["safety_violations"], 0)
+        self.assertLessEqual(max(result["controls"]["certainty_permutation"]), 0.0)
+        self.assertTrue(result["passes_preregistered_synthetic_criterion"])
+
+    def test_certainty_artifact_is_hash_bound_and_replayable(self):
+        with tempfile.TemporaryDirectory() as directory:
+            artifact = write_certainty_artifact(Path(directory) / "certainty")
+            self.assertTrue(verify_certainty_artifact(artifact))
+            (artifact / "result.json").write_text("{}", encoding="utf-8")
+            with self.assertRaises(ValueError):
+                verify_certainty_artifact(artifact)
 
 
 if __name__ == "__main__":
