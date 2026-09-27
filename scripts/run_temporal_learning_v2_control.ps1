@@ -7,8 +7,8 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
-$workspace = "C:\AI\ai-emotion-lab"
-$python = "C:\Users\kjunw\AppData\Local\Programs\Python\Python312\python.exe"
+$workspace = Split-Path -Parent $PSScriptRoot
+$python = (Get-Command python.exe -ErrorAction Stop).Source
 if (Test-Path -LiteralPath $ControlDirectory) { throw "Control directory already exists" }
 $controlParent = Split-Path -Parent $ControlDirectory
 if ([string]::IsNullOrWhiteSpace($controlParent)) { throw "ControlDirectory must have a parent" }
